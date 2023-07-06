@@ -11,8 +11,9 @@ repos:
     -   id: black
 -   repo: local
     hooks:
-      - id: generate-requirements
-        name: Generate requirements.txt
-        entry: python -c "import subprocess; subprocess.run(['pip', 'freeze', '>', 'requirements.txt'], shell=True)"
+      - id: requirements
+        name: requirements
+        entry: bash -c 'venv/bin/pip3 freeze > requirements.txt; git add requirements.txt'
         language: system
-        types: [python]
+        pass_filenames: false
+        stages: [commit]
